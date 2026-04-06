@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Young Événement 2026 — Accueil</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Outfit:wght@300;400;600&family=Cormorant+Garamond:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+  <div id="progress" class="progress"></div>
+  <div id="toast" class="toast"></div>
+
+  <nav id="navbar">
+    <a href="index.html" class="nav-logo">YOUNG ÉVÉNEMENT</a>
+    <div class="nav-links">
+      <a href="index.html">Accueil</a>
+      <a href="inscription.html">Inscription</a>
+      <a href="programme.html">Programme</a>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero">
+      <div class="hero-bg"></div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <span class="hero-badge">Avril 2026</span>
+        <h1 class="hero-title">YOUNG<br><span>ÉVÉNEMENT</span></h1>
+        <p class="hero-sub">L'élégance de la jeunesse, l'excellence de demain.</p>
+        <div class="hero-btns">
+          <a href="inscription.html" class="btn btn-primary">Réserver ma place</a>
+          <a href="#about" class="btn btn-ghost">Découvrir l'événement</a>
+        </div>
+      </div>
+    </section>
+
+    <div class="stats-bar">
+      <div class="stat">
+        <div class="stat-num" id="st1">0</div>
+        <div class="stat-label">Inscrits</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num" id="st2">0</div>
+        <div class="stat-label">Établissements</div>
+      </div>
+    </div>
+
+    <section id="about">
+      <div class="section-label">L'essence</div>
+      <h2 class="section-title">À Propos</h2>
+      <div class="section-line"></div>
+      
+      <div class="about-grid">
+        <div class="about-text">
+          <p>Bienvenue à la <strong>Young Événement 2026</strong>, le rendez-vous incontournable de la jeunesse élitiste. Pensé comme une passerelle entre tradition et futurisme, cet événement célèbre le talent et l'ambition.</p>
+          <p>Dans un cadre prestigieux, nous réunissons les esprits les plus brillants pour une journée de partage, de culture et d'inspiration.</p>
+        </div>
+        <div class="about-card">
+          <blockquote>"La jeunesse n'est pas une période de la vie, elle est un état d'esprit, un effet de la volonté."</blockquote>
+          <cite>Comité d'organisation</cite>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-logo">YE</div>
+    <p>© 2026 YOUNG ÉVÉNEMENT — Tous droits réservés</p>
+    <p style="margin-top:0.5rem;font-size:0.72rem">INTOMBIYE NGOMA Dylan — Site Officiel</p>
+  </footer>
+
+  <div class="admin-trigger" onclick="checkAdmin()" title="Coin Admin">⚙️</div>
+
+  <script src="database.js"></script>
+  <script src="main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const c = await DB.count();
+      const e = await DB.etablissements();
+      animateCount('st1', c);
+      animateCount('st2', e);
+    });
+  </script>
+</body>
+</html>

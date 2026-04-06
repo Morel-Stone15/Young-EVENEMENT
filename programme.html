@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Programme — Young Événement 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .timeline { position: relative; max-width: 800px; margin: 2rem auto; padding-left: 2rem; border-left: 1px solid var(--border); }
+    .tl-item { position: relative; margin-bottom: 3rem; padding-left: 1.5rem; }
+    .tl-item::before { content: ''; position: absolute; left: -2.35rem; top: 0.5rem; width: 10px; height: 10px; background: var(--gold); border-radius: 50%; box-shadow: 0 0 10px var(--gold); }
+    .tl-time { color: var(--gold); font-family: 'Cinzel'; font-size: 0.8rem; margin-bottom: 0.5rem; display: block; }
+    .tl-title { font-family: 'Cinzel'; color: #fff; font-size: 1.1rem; margin-bottom: 0.5rem; }
+    .tl-desc { color: var(--muted); font-size: 0.9rem; line-height: 1.6; }
+
+    /* Background styling */
+    .page-bg {
+      position: fixed; inset: 0; z-index: -1;
+      background-image: url("progra.jpeg");
+      background-size: cover;
+      background-position: center;
+      filter: brightness(0.3) saturate(0.8);
+    }
+    .page-overlay {
+      position: fixed; inset: 0; z-index: -1;
+      background: radial-gradient(circle at center, transparent, var(--dark));
+    }
+  </style>
+</head>
+<body>
+
+  <div id="progress" class="progress"></div>
+  <div id="toast" class="toast"></div>
+
+  <div class="page-bg"></div>
+  <div class="page-overlay"></div>
+
+  <nav id="navbar">
+    <a href="index.html" class="nav-logo">YOUNG ÉVÉNEMENT</a>
+    <div class="nav-links">
+      <a href="index.html">Accueil</a>
+      <a href="inscription.html">Inscription</a>
+      <a href="programme.html">Programme</a>
+    </div>
+  </nav>
+
+  <main style="padding-top: 8rem;">
+    <section>
+      <div class="section-label">Déroulé</div>
+      <h1 class="section-title">Le Programme</h1>
+      <div class="section-line"></div>
+
+      <div class="timeline">
+        <div class="tl-item">
+          <span class="tl-time">09:00 — 10:00</span>
+          <h3 class="tl-title">Accueil & Cocktail de Bienvenue</h3>
+          <p class="tl-desc">Arrivée des participants, remise des badges et session de networking matinale sous le dôme digital.</p>
+        </div>
+        <div class="tl-item">
+          <span class="tl-time">10:30 — 12:30</span>
+          <h3 class="tl-title">Conférence : L'Élite de Demain</h3>
+          <p class="tl-desc">Panel d'experts sur l'innovation et le leadership dans un monde en mutation constante.</p>
+        </div>
+        <div class="tl-item">
+          <span class="tl-time">13:00 — 14:30</span>
+          <h3 class="tl-title">Déjeuner de Gala</h3>
+          <p class="tl-desc">Gastronomie raffinée et échanges conviviaux entre les lauréats et professionnels.</p>
+        </div>
+        <div class="tl-item">
+          <span class="tl-time">15:00 — 17:00</span>
+          <h3 class="tl-title">Ateliers Interactifs</h3>
+          <p class="tl-desc">Sessions pratiques sur le développement de projets futuristes et l'art de l'entrepreneuriat.</p>
+        </div>
+        <div class="tl-item">
+          <span class="tl-time">18:00 — 20:00</span>
+          <h3 class="tl-title">Cérémonie de Clôture</h3>
+          <p class="tl-desc">Remise des trophées YE 2026 et spectacle holographique final.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-logo">YE</div>
+    <p>© 2026 YOUNG ÉVÉNEMENT — Tous droits réservés</p>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

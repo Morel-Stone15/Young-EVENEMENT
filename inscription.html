@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inscription — Young Événement 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Outfit:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    /* Background styling */
+    .page-bg {
+      position: fixed; inset: 0; z-index: -1;
+      background-image: url("inscrip.jpeg");
+      background-size: cover;
+      background-position: center;
+      filter: brightness(0.35) saturate(0.9);
+    }
+    .page-overlay {
+      position: fixed; inset: 0; z-index: -1;
+      background: radial-gradient(circle at center, transparent, var(--dark));
+    }
+    /* Ensure form visibility */
+    .form-section {
+      background: rgba(26, 21, 16, 0.85);
+      backdrop-filter: blur(10px);
+    }
+  </style>
+</head>
+<body>
+
+  <div id="progress" class="progress"></div>
+  <div id="toast" class="toast"></div>
+
+  <div class="page-bg"></div>
+  <div class="page-overlay"></div>
+
+  <nav id="navbar">
+    <a href="index.html" class="nav-logo">YOUNG ÉVÉNEMENT</a>
+    <div class="nav-links">
+      <a href="index.html">Accueil</a>
+      <a href="inscription.html">Inscription</a>
+      <a href="programme.html">Programme</a>
+    </div>
+  </nav>
+
+  <main style="padding-top: 8rem;">
+    <section>
+      <div class="section-label">Participation</div>
+      <h1 class="section-title">Inscription</h1>
+      <div class="section-line"></div>
+
+      <div class="form-section">
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="f-prenom">Prénom *</label>
+            <input type="text" id="f-prenom" placeholder="Ex: Jean">
+          </div>
+          <div class="form-group">
+            <label for="f-nom">Nom *</label>
+            <input type="text" id="f-nom" placeholder="Ex: Dupont">
+          </div>
+          <div class="form-group">
+            <label for="f-classe">Classe *</label>
+            <select id="f-classe">
+              <option value="">Sélectionner...</option>
+              <option value="Seconde">Seconde</option>
+              <option value="Première">Première</option>
+              <option value="Terminale">Terminale</option>
+              <option value="Université">Université</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="f-lycee">Établissement *</label>
+            <input type="text" id="f-lycee" placeholder="Ex: Lycée National">
+          </div>
+          <div class="form-group">
+            <label for="f-tel">Téléphone (Parent/Tuteur) *</label>
+            <input type="tel" id="f-tel" placeholder="06... / 07...">
+          </div>
+          <div class="form-group">
+            <label for="f-auth">Autorisation parentale</label>
+            <select id="f-auth">
+              <option value="attente">En attente / À remettre</option>
+              <option value="confirmé">Déjà signée / Accordée</option>
+            </select>
+          </div>
+          <div class="form-group full">
+            <label for="f-note">Remarques ou besoins spécifiques</label>
+            <textarea id="f-note" placeholder="Optionnel..."></textarea>
+          </div>
+        </div>
+        <p class="form-note">* Champs obligatoires pour valider votre place.</p>
+        <button class="btn btn-primary" style="width: 100%;" onclick="submitInscription()">Confirmer mon inscription</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-logo">YE</div>
+    <p>© 2026 YOUNG ÉVÉNEMENT — Tous droits réservés</p>
+  </footer>
+
+  <script src="database.js"></script>
+  <script src="main.js"></script>
+  <script>
+    async function submitInscription() {
+      const prenom = document.getElementById('f-prenom').value.trim();
+      const nom    = document.getElementById('f-nom').value.trim();
+      const classe = document.getElementById('f-classe').value;
+      const lycee  = document.getElementById('f-lycee').value.trim();
+      const tel    = document.getElementById('f-tel').value.trim();
+      const auth   = document.getElementById('f-auth').value;
+      const note   = document.getElementById('f-note').value.trim();
+
+      if (!prenom || !nom || !classe || !lycee || !tel) {
+        return toast('Veuillez remplir tous les champs obligatoires (*)', 'error');
+      }
+
+      const entry = {
+        id: Date.now().toString(),
+        prenom, nom, classe, lycee, tel, auth, note,
+        date: new Date().toLocaleDateString('fr-FR')
+      };
+
+      try {
+        await DB.add(entry);
+        toast(`${prenom} inscrit(e) avec succès ! 🎉`, 'success');
+
+        // Clear form
+        ['f-prenom','f-nom','f-lycee','f-tel','f-note'].forEach(id => document.getElementById(id).value = '');
+        document.getElementById('f-classe').value = '';
+      } catch (e) {
+        toast("Erreur lors de l'enregistrement", "error");
+      }
+    }
+  </script>
+</body>
+</html>
